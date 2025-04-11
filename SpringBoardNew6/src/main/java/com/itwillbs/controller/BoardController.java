@@ -64,10 +64,12 @@ public class BoardController {
 		bService.registBoard(vo);
 		
 		
-		
-		return "";
+		// 게시판 글목록 페이지로 이동
+		// return "/board/listAll"; (x)
+		return "redirect:/board/listAll";
 		
 	}
+	
 	
 	
 	
