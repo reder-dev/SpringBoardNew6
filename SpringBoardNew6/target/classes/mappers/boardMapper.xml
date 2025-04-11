@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<mapper namespace="com.itwillbs.mapper.BoardMapper">
+
+	<!--  시간정보 조회  -->
+
+		<select id="getServerTime" resultType="string"> 
+			select now() 
+		
+		</select>
+		
+		<!-- 게시판 글쓰기 -->
+		<insert id="insertBoard">
+			insert into tbl_board(title, content, writer)
+			values(#{title},#{content},#{writer})
+		
+		
+		</insert>
+		<!-- 게시판 글쓰기 -->
+		
+	</mapper>
