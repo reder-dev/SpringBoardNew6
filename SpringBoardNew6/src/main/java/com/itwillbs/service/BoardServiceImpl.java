@@ -63,7 +63,7 @@ public class BoardServiceImpl implements BoardService{
 		
 		// DAO - 특정 글정보를 조회
 		
-		return null;
+		return bDao.selectBoard(bno);
 	}
 	
 	
