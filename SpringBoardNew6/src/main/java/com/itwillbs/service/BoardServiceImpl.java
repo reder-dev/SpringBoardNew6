@@ -56,6 +56,17 @@ public class BoardServiceImpl implements BoardService{
 		
 		return null;
 	}
+
+	@Override
+	public BoardVO getBoard(int bno) throws Exception {
+		logger.info(" getBoard(int bno) 실행");
+		
+		// DAO - 특정 글정보를 조회
+		
+		return bDao.selectBoard(bno);
+	}
+	
+	
 	
 	
 	

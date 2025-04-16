@@ -29,7 +29,7 @@
                 <c:forEach var="vo" items="${boardList }">
                 <tr>
                   <td>${vo.bno }</td>
-                  <td>${vo.title }</td>
+                  <td><href"/board/read?bno=5{vo.bno}">${vo.title }</td>
                   <td>${vo.writer }</td>
                   <td>
                    	<fmt:formatDate value="${vo.regdate }"/> 
