@@ -16,11 +16,9 @@ import com.itwillbs.persistence.BoardDAO;
  */
 @Service
 public class BoardServiceImpl implements BoardService{
-	
-	
-
-	private static final Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
-	
+	//mylog
+	private static final Logger logger 
+	   = LoggerFactory.getLogger(BoardServiceImpl.class);
 	// BoardDAO 객체 주입
 	@Inject
 	private BoardDAO bDao;
@@ -33,38 +31,56 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void registBoard(BoardVO vo) throws Exception {
-		
 		logger.info("게시판 글쓰기 - registBoard(BoardVO vo) 실행");
-		logger.info(" 전달 받은 정보를 DAO로 전달 + DAO동작을 처리");
+		logger.info(" 전달받은 정보를 DAO로 전달 + DAO동작을 처리 ");
 		
 		bDao.insertBoard(vo);
 		
-		logger.info(" DAO 실행완료 -> 컨트롤러로 이동 ");
-		
+		logger.info(" DAO 실행완료 -> 컨트롤러로 이동");
 		
 	}
 
 	@Override
 	public List<BoardVO> getBoardListAll() throws Exception {
-		logger.info(" getBoardListAll() 실행");
+		logger.info(" getBoardListAll() 실행 ");
 		
 		// DAO 동작 호출
 		List<BoardVO> boardList = bDao.selectBoardListAll();
 		
-		logger.info(" boardList : {} 개", boardList.size());
+		logger.info(" boardList : {} 개",boardList.size());
 		
-		
-		return null;
+		return boardList;
 	}
 
 	@Override
 	public BoardVO getBoard(int bno) throws Exception {
-		logger.info(" getBoard(int bno) 실행");
+		logger.info(" getBoard(int bno)실행 ");
 		
-		// DAO - 특정 글정보를 조회
-		
+		// DAO - 특정 글정보를 조회 
 		return bDao.selectBoard(bno);
 	}
+
+	@Override
+	public void increaseViewCnt(int bno) throws Exception {
+		logger.info(" increaseViewCnt(int bno) 실행 ");
+		
+		bDao.updateViewCnt(bno);		
+	}
+
+	@Override
+	public void modifyBoard(BoardVO uvo) throws Exception {
+		logger.info(" modifyBoard(BoardVO uvo) 실행 ");
+		
+		bDao.updateBoard(uvo);		
+	}
+
+	@Override
+	public Integer removeBoard(BoardVO dvo) throws Exception {
+		logger.info(" removeBoard(BoardVO dvo) 호출 ");
+		return bDao.deleteBoard(dvo);
+	}
+	
+	
 	
 	
 	
