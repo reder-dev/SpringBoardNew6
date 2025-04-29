@@ -3,23 +3,27 @@
 	
 	<%@ include file="../include/header.jsp" %>
 	
-	<div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>시간 : ${time }<sup style="font-size: 20px">%</sup></h3>
+	<div class="info-box bg-green">
+            <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
 
-                <p>time.jsp</p>
+            <div class="info-box-content">
+              <span class="info-box-text">
+              		time.jsp
+              </span>
+              <span class="info-box-number">
+              		시간 : ${time }
+              </span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 20%"></div>
               </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <span class="progress-description">
+                    20% Increase in 30 Days
+                  </span>
             </div>
+            <!-- /.info-box-content -->
           </div>
+
 	
-	<h1>time.jsp</h1>
-	
-	<h2>시간 : ${time }</h2>
 	
 	<%@ include file="../include/footer.jsp" %>

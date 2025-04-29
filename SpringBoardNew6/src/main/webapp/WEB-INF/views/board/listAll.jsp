@@ -1,18 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%-- <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %> --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%@ include file="../include/header.jsp" %>
+
+<%@include file="../include/header.jsp" %>
 	<div class="content">
 		<h1>listAll.jsp</h1>
-		${result }
+		${result } <hr>
 		
-		${boardList.size() }
+		<%-- ${boardList } --%>
+		<%-- ${boardList.size() } --%>
+		<!-- 게시판 목록 출력 -->
 		
-	</div>
-	<div class="box">
+		<div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">ITWILL 게시판 목록</h3>
             </div>
@@ -27,82 +29,21 @@
                   <th style="width: 40px">VIEWCNT</th>
                 </tr>
                 <c:forEach var="vo" items="${boardList }">
-                <tr>
-                  <td>${vo.bno }</td>
-                  <td><href"/board/read?bno=5{vo.bno}">${vo.title }</td>
-                  <td>${vo.writer }</td>
-                  <td>
-                   	<fmt:formatDate value="${vo.regdate }"/> 
-                  </td>
-                  <td><span class="badge bg-red">${vo.viewcnt }</span></td>
-                </tr>
-               </c:forEach>
-                
-              </tbody></table>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">«</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">»</a></li>
-              </ul>
-            </div>
-          </div><div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Bordered Table</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table class="table table-bordered">
-                <tbody><tr>
-                  <th style="width: 10px">#</th>
-                  <th>Task</th>
-                  <th>Progress</th>
-                  <th style="width: 40px">Label</th>
-                </tr>
-                <tr>
-                  <td>1.</td>
-                  <td>Update software</td>
-                  <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-red">55%</span></td>
-                </tr>
-                <tr>
-                  <td>2.</td>
-                  <td>Clean database</td>
-                  <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-yellow">70%</span></td>
-                </tr>
-                <tr>
-                  <td>3.</td>
-                  <td>Cron job running</td>
-                  <td>
-                    <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-light-blue">30%</span></td>
-                </tr>
-                <tr>
-                  <td>4.</td>
-                  <td>Fix and squish bugs</td>
-                  <td>
-                    <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-success" style="width: 90%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-green">90%</span></td>
-                </tr>
+	                <tr>
+	                  <td>${vo.bno }</td>
+	                  <td>
+	                  	<a href="/board/read?bno=${vo.bno }">${vo.title }</a>
+	                  </td>
+	                  <td>${vo.writer }</td>
+	                  <td>
+	                 	<fmt:formatDate value="${vo.regdate }"/>
+	                  </td>
+	                  <td><span class="badge bg-red">
+	                  ${vo.viewcnt }
+	                  </span></td>
+	                </tr>
+                </c:forEach>
+               
               </tbody></table>
             </div>
             <!-- /.box-body -->
@@ -117,17 +58,62 @@
             </div>
           </div>
 	
+		
+	
+	</div>   
+	
 	<script type="text/javascript">
 		// EL데이터 -> JS에서 출력
 		var result = '${result}';
+		//alert( result );
 		
-		//alert(result);
-		
-		if(result == "creatOK"){
-			alert(" 글쓰기 완료! ")
+		if(result == "createOK"){
+			//alert(" 글쓰기 완료! ");
+			Swal.fire({
+			  title: "글쓰기 완료!",
+			  text: " 게시판 리스트로 이동합니다! ",
+			  icon: "success"
+			});
 		}
 		
+		if(result == "modifyOK"){
+			//alert(" 글 수정 완료! ");
+			Swal.fire(" 글 수정 완료! ");
+		}
+		
+		if(result == "deleteOK"){
+			Swal.fire({
+				  title: "글삭제 완료!",
+				  text: " 게시판 리스트로 이동합니다! ",
+				  icon: "success"
+			});
+		}
+		
+		if(result == "deleteErr"){
+			Swal.fire({
+				  title: "글삭제 실패!",
+				  text: " 게시판 리스트로 이동합니다! ",
+				  icon: "error"
+			});
+		}
 	</script>
-
-<%@ include file="../include/footer.jsp" %>
-
+    
+    <!-- <script src="~~/jQuery-2.1.4.min.js"></script> -->
+	<script type="text/javascript">
+	   // JS사용 
+	   // 사용가능
+	   // Swal.fire("SweetAlert2 is working!");
+	    
+	   // 제이쿼리(jQuery) 사용 선언
+	   $(document).ready(function(){
+		  // 사용가능
+		  // Swal.fire("SweetAlert2 is working!");
+		   
+	   });
+	
+	
+	</script>
+	
+	
+	
+<%@include file="../include/footer.jsp" %>   
